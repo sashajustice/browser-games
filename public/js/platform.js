@@ -73,7 +73,7 @@ function Lava (pos, ch) {
   } else if (ch == "|") {
     this.speed = new Vector(0,2);
   } else if (ch == "v") {
-    this.sped = new Vector(0,3);
+    this.speed = new Vector(0,3);
     this.repeatPos = pos;
   }
 }
@@ -258,6 +258,8 @@ Level.prototype.actorAt = function(actor) {
       level.playerTouched(obstacle);
       if (keys.up && this.speed.y > 0)
         this.speed.y = -jumpSpeed;
+      else
+        this.speed.y = 0
       } else {
         this.pos = newPos;
       }
@@ -333,7 +335,7 @@ Level.prototype.actorAt = function(actor) {
     runAnimation(function(step) {
       level.animate(step, arrows);
       display.drawFrame(step);
-      if(level.isFinished()) {htm
+      if(level.isFinished()){
         display.clear();
         if (andThen)
           andThen(level.status);
